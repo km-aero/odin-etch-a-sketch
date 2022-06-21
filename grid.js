@@ -9,4 +9,17 @@ for (let i = 0; i < 256; i++) {
     gridArray.push(gridBox);
 };
 
-// Add them to gridbox div
+// Add boxes to container div
+gridContainer = document.querySelector('#grid-container');
+
+gridArray.forEach(box => {
+    box.addEventListener('mouseover', function() {
+        // Change style when mouse over
+        this.classList.add('grid-box-hover');
+    })
+    box.addEventListener('mouseout', function() {
+        // Change style when mouse out
+        this.classList.remove('grid-box-hover');
+    })
+    gridContainer.appendChild(box);
+});
