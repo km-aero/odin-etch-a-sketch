@@ -1,20 +1,16 @@
 #grid-container {
     border: 1px solid black;
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
-    height: 500px;
-    width: 500px;
 }
 
 #grid-box {
     height: 30px;
     width: 30px;
-    margin: auto;
+    margin: 0;
 }
 
 .grid-box-hover {
     transform: scale(1.1);
-    border-color: #ffc600;
-    box-shadow: 0 0 1rem #ffc600;
+    background-color: #ffc600;
 }

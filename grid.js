@@ -1,25 +1,43 @@
-// Create a 16x16 grid of square grids
+function createGrid(amount) {
+    let gridArray = [];
+    gridContainer = document.querySelector('#grid-container');
+    resetButton = document.querySelector('button');
 
-// Create 36 divs using for loop
-let gridArray = [];
+    // Create divs using for loop
+    for (let i = 0; i < amount**2; i++) {
+        let gridBox = document.createElement('div');
+        gridBox.setAttribute('id', 'grid-box');
+        gridArray.push(gridBox);
+    };
 
-for (let i = 0; i < 256; i++) {
-    let gridBox = document.createElement('div');
-    gridBox.setAttribute('id', 'grid-box');
-    gridArray.push(gridBox);
+    // Add mouseover event to each grid box
+    gridArray.forEach(box => {
+        box.addEventListener('mouseover', function() {
+            this.classList.add('grid-box-hover');
+        });
+
+        gridContainer.appendChild(box);
+    }); 
+
+    // Set grid div dimensions
+    let boxDimensions = (amount * 30);
+
+    gridContainer.style.height = boxDimensions.toString() + 'px';
+    gridContainer.style.width = boxDimensions.toString() + 'px';
+}
+
+// Create initial grid
+createGrid(16);
+
+// When button is clicked prompt user for a value
+function setGrid() {
+    let numberOfBoxes = parseInt(prompt('Enter the desired length of the grid:'));
+
+    // Remove grid before creating new grid
+    gridBoxList = document.querySelectorAll('#grid-box');
+    gridBoxList.forEach(box => {
+        box.remove();
+    })
+
+    createGrid(numberOfBoxes);
 };
-
-// Add boxes to container div
-gridContainer = document.querySelector('#grid-container');
-
-gridArray.forEach(box => {
-    box.addEventListener('mouseover', function() {
-        // Change style when mouse over
-        this.classList.add('grid-box-hover');
-    })
-    box.addEventListener('mouseout', function() {
-        // Change style when mouse out
-        this.classList.remove('grid-box-hover');
-    })
-    gridContainer.appendChild(box);
-});
